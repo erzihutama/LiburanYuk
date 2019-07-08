@@ -4,6 +4,12 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="splash">#0080FF</color>
+    <color name="white">#ffff</color>
+    <!--navigation colour-->
+    <color name="colorPrimaryDark2">#282F3C</color>
+    <!--color navbar-->
+    <color name="colorNavigationIcon">#18a3fe</color>
+    <color name="colorNavigationText">#18a3fe</color>
 
     <!-- colors for button style wk -->
     <color name="orange">#fca800</color>

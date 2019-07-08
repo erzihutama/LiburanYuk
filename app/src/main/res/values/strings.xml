@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">LiburanYuk</string>
+    <string name="home">Home</string>
+    <string name="Profil">Profil</string>
+    <string name="Info">Info</string>
+    <string name="pantaidef">Bermain di pantai yang menyajikan banyak ke indahan Pantai yang sangat mempesona di indonesia</string>
+    <string name="budaya">Budaya di indonesia sangat berakenak ragam dan menjadi tempat favorit untuk mengenal budaya di indonesia</string>
+    <string name="judul1">Recomended Untuk Kamu</string>
+    <string name="judul2"><![CDATA[Art & Culture]]></string>
+    <string name="judul3"><![CDATA[Entertainment & Nightlife]]></string>
+    <string name="txt_traveling"><![CDATA[Outdor & Traveling]]></string>
 </resources>
