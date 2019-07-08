@@ -7,11 +7,11 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/navdaily"
+        android:id="@+id/mytrip"
         android:icon="@drawable/love"
-        android:title="@string/Info" />
+        android:title="@string/mytrip" />
     <item
-        android:id="@+id/navgaleri"
+        android:id="@+id/profil"
         android:icon="@drawable/user"
         android:title="@string/Profil" />
 

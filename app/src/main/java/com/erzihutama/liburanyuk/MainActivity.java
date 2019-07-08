@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.erzihutama.liburanyuk.view.home.HomeFragment;
+import com.erzihutama.liburanyuk.view.home.ProfilFragment;
+import com.erzihutama.liburanyuk.view.home.mytripFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
@@ -41,12 +43,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.navhome:
                 fragment = new HomeFragment();
                 break;
-//            case R.id.navdaily:
-//                fragment = new DailyFragment();
-//                break;
-//            case R.id.navgaleri:
-//                fragment = new galeriFragment();
-//                break;
+            case R.id.mytrip:
+                fragment = new mytripFragment();
+                break;
+            case R.id.profil:
+                fragment = new ProfilFragment();
+                break;
 
         }
         return loadFragment(fragment);

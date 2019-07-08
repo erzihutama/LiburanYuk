@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_marginTop="40dp"
+        android:id="@+id/line"
+        android:layout_width="30dp"
+        android:layout_height="6dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="2dp"
+        android:background="@color/orange" />
+    <TextView
+        android:id="@+id/txt_mytrip"
+        android:layout_below="@id/line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Trip"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/intro_title_color"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_fav"
+        android:layout_below="@id/txt_mytrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Favorite"
+        android:textSize="20dp"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:textColor="@color/orange"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_fav"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/daily_id_r_fav"
+            android:orientation="horizontal">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+</RelativeLayout>
