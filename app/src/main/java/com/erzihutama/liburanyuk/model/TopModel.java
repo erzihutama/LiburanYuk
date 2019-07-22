@@ -2,26 +2,16 @@ package com.erzihutama.liburanyuk.model;
 
 
 public class TopModel {
-    private int mImageResource;
-    private String namaGambar;
-    private String descGambar;
-
-    public TopModel(int ImageResource, String namagambar , String descgambar){
-        mImageResource = ImageResource;
-        namaGambar = namagambar;
-        descGambar = descgambar;
-
+    String videoUrl;
+    public TopModel(){}
+    public TopModel(String videoUrl){
+        this.videoUrl = videoUrl;
     }
 
-    public int getmImageResource(){
-        return mImageResource;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
-    public String getNamaGambar(){
-        return namaGambar;
-    }
-
-    public String getDescGambar() {
-        return descGambar;
-    }
-}
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }}
