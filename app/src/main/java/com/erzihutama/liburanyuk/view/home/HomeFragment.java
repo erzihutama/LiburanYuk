@@ -175,7 +175,7 @@ public class HomeFragment extends Fragment {
     @OnClick(R.id.Artcultre)
     public void klik(){
 
-        Intent i=new Intent(getContext(),ArtActivity.class);
+        Intent i=new Intent(getContext(),Artactivity.class);
         startActivity(i);
     }
 

@@ -6,18 +6,19 @@
     <color name="splash">#0080FF</color>
     <color name="white">#ffff</color>
     <!--navigation colour-->
-    <color name="colorPrimaryDark2">#282F3C</color>
+    <color name="colorPrimaryDark2">#000000</color>
     <!--color navbar-->
     <color name="colorNavigationIcon">#18a3fe</color>
     <color name="colorNavigationText">#18a3fe</color>
 
     <!-- colors for button style wk -->
     <color name="orange">#fca800</color>
+    <color name="orange2">#b76200</color>
     <color name="gradient_start_color">#4c84ff</color>
     <color name="gradient_end_color">#18a3fe</color>
 // color walkthrou
     <color name="tab_indicator_gray">#c0c0c0</color>
     <color name="intro_title_color">#000000</color>
     <color name="grey">#656565</color>
-
+    <color name="putih">#ffffff</color>
 </resources>

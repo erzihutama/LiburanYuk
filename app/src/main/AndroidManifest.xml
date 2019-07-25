@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".IntroActivity" />
-        <activity android:name=".view.home.ArtActivity" />
+        <activity android:name=".view.home.Artactivity" />
+        <activity android:name=".view.home.DetailActivity"/>
+            <!--android:theme="@style/AppTheme2"/>-->
         <activity android:name=".view.home.enterActivity"></activity>
     </application>
 
