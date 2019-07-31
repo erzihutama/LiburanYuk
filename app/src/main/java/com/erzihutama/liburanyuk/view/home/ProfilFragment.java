@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.erzihutama.liburanyuk.R;
 import com.erzihutama.liburanyuk.adapter.OutdorAdapter;
-import com.erzihutama.liburanyuk.model.OutdorModel;
+import com.erzihutama.liburanyuk.model.OutdorItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class ProfilFragment extends Fragment {
 
 
     private OutdorAdapter viewAdapter;
-    private List<OutdorModel> mItems = new ArrayList<>();
+    private List<OutdorItem> mItems = new ArrayList<>();
 
     @Nullable
     @Override

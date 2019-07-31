@@ -1,7 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
    android:id="@+id/home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-</RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/peak_mountain_3"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+
+        />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="COMING SOON"
+    android:textSize="20dp"
+    android:textStyle="bold"
+    android:textColor="@color/colorNavigationText"
+    android:layout_gravity="center"
+    />
+</LinearLayout>

@@ -2,14 +2,11 @@ package com.erzihutama.liburanyuk.view.home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.erzihutama.liburanyuk.R;
-import com.erzihutama.liburanyuk.model.DataModelArt;
-import com.erzihutama.liburanyuk.model.OutdorModel;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -17,8 +14,15 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        OutdorModel outdorModel= getIntent().getParcelableExtra("key");
+
+        String nama_tempat = getIntent().getExtras().getString("nama_tempat");
+        String daerah= getIntent().getExtras().getString("daerah");
+        String photo= getIntent().getExtras().getString("photo");
+        String deskripsi1 = getIntent().getExtras().getString("deskripsi");
+        String penilaian = getIntent().getExtras().getString("penilaian");
+        String jam1 = getIntent().getExtras().getString("jam");
+
+
 
         ImageView gamabar = (ImageView)findViewById(R.id.img_item_photo);
         TextView name = (TextView)findViewById(R.id.tv_item_name);
@@ -28,17 +32,13 @@ public class DetailActivity extends AppCompatActivity {
         TextView jam = (TextView)findViewById(R.id.content_wafat);
 
 
+        name.setText(nama_tempat);
+        remarks.setText(daerah);
+        deskripsi.setText(deskripsi1);
+        nilai.setText(penilaian);
+        jam.setText(jam1);
+        Glide.with(this).load(photo).into(gamabar);
 
-        Glide.with(this).load(outdorModel.getPhoto()).override(350,550).into(gamabar);
-        name.setText(outdorModel.getNama_tempat());
-        remarks.setText(outdorModel.getDaerah());
-        deskripsi.setText(outdorModel.getDeskripsi());
-        nilai.setText(outdorModel.getPenilaian());
-        jam.setText(outdorModel.getJam());
-
-
-        Log.i("photo", outdorModel.getPhoto());
-        Log.i("deskripsi", outdorModel.getDeskripsi());
     }
 
 

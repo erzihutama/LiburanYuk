@@ -2,10 +2,13 @@ package com.erzihutama.liburanyuk;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.erzihutama.liburanyuk.view.home.BudayaFragment;
 import com.erzihutama.liburanyuk.view.home.HomeFragment;
 import com.erzihutama.liburanyuk.view.home.ProfilFragment;
 import com.erzihutama.liburanyuk.view.home.mytripFragment;
@@ -19,7 +22,32 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
         // kita set default nya Home Fragment
-        loadFragment(new HomeFragment());
+
+
+//        intent untuk ke dalam botom nav bar
+        String newString;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("fragment");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("fragment");
+        }
+
+        if(newString==null){
+
+            loadFragment(new HomeFragment());
+
+        } else
+        {
+            if(newString.equals("budaya")){
+                loadFragment(new BudayaFragment()) ;}
+        }
+
+//        loadFragment(new HomeFragment());
         // inisialisasi BottomNavigaionView
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
         // beri listener pada saat item/menu bottomnavigation terpilih
@@ -38,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        android.support.v4.app.Fragment fragment = null;
+        android.support.v4.app.Fragment     fragment = null;
         switch (menuItem.getItemId()) {
             case R.id.navhome:
                 fragment = new HomeFragment();

@@ -8,13 +8,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -22,18 +21,22 @@ import android.widget.Toast;
 import com.erzihutama.liburanyuk.R;
 import com.erzihutama.liburanyuk.adapter.InterestAdapter;
 import com.erzihutama.liburanyuk.adapter.TopAdapter;
-import com.erzihutama.liburanyuk.model.InterestModel;
+import com.erzihutama.liburanyuk.api.ApiOutdorEndPoint;
+import com.erzihutama.liburanyuk.api.ApiOutdorService;
+import com.erzihutama.liburanyuk.model.OutdorItem;
+import com.erzihutama.liburanyuk.model.OutdorModel;
 import com.erzihutama.liburanyuk.model.TopModel;
-import com.erzihutama.liburanyuk.IntroActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.erzihutama.liburanyuk.R.id.Artcultre;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -59,20 +62,25 @@ public class HomeFragment extends Fragment {
     Vector<TopModel> youtubeVideos = new Vector<TopModel>();
     //inisialisasi bind view untuk pindah halaman buterknife
 
-    @BindView(R.id.Artcultre)
-    CardView artculture;
+    @BindView(R.id.Outdortrav)
+    CardView Outdortrav;
 
     @BindView(R.id.Enterteiment)
         CardView enterteinment;
+
+    @BindView(R.id.artbudaya)
+    CardView artbudaya;
     //
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM3 = "param3";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private String mParam3;
 
 
     private OnFragmentInteractionListener mListener;
@@ -95,6 +103,7 @@ public class HomeFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -105,30 +114,17 @@ public class HomeFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    private InterestAdapter viewAdapter;
+    private List<OutdorItem> mItems = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-        ArrayList<InterestModel> InterestModels = new ArrayList<>();
-        InterestModels.add(new InterestModel(R.drawable.baner1,"Tempat Wisata","Budaya di indonesia sangat berakenak ragam dan menjadi tempat favorit untuk mengenal budaya di indonesia"));
-        InterestModels.add(new InterestModel(R.drawable.baner2,"Budaya","Budaya di indonesia sangat berakenak ragam dan menjadi tempat favorit untuk mengenal budaya di indonesia"));
-        InterestModels.add(new InterestModel(R.drawable.baner1,"Tempat Makan","Budaya di indonesia sangat berakenak ragam dan menjadi tempat favorit untuk mengenal budaya di indonesia"));
-
-
-        mRecycleView2 = view.findViewById(R.id.daily_id_r_h);
-        mRecycleView2.setHasFixedSize(true);
-        mLayoutManager2 = new LinearLayoutManager(getActivity());
-        mAdapter2 = new InterestAdapter(InterestModels);
-
-        mRecycleView2.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL,false));
-        mRecycleView2.setAdapter(mAdapter2);
-
-
 
 //        top destinasi recycleview
         recyclerView = (RecyclerView)view.findViewById(R.id.daily_id_r_top);
@@ -141,8 +137,32 @@ public class HomeFragment extends Fragment {
         TopAdapter hightlightAdapter = new TopAdapter(youtubeVideos);
         recyclerView.setAdapter(hightlightAdapter);
 
-
         ButterKnife.bind(this,view);;
+
+        final RecyclerView recyclerView = view.findViewById(R.id.daily_id_r_h);
+        viewAdapter = new InterestAdapter(getContext(), mItems);
+//        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayout.HORIZONTAL,false));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(viewAdapter);
+        ApiOutdorService api = ApiOutdorEndPoint.getClient().create(ApiOutdorService.class);
+        Call<OutdorModel> call = api.getOutdor();
+        call.enqueue(new Callback<OutdorModel>() {
+            @Override
+            public void onResponse(Call<OutdorModel> call, Response<OutdorModel> response) {
+                mItems = response.body().getItem();
+                viewAdapter = new InterestAdapter(getContext(), mItems);
+                recyclerView.setAdapter(viewAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<OutdorModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Oops, your connection is WONGKY! ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
         return view;
 
@@ -172,18 +192,33 @@ public class HomeFragment extends Fragment {
         mListener = null;
     }
 
-    @OnClick(R.id.Artcultre)
+    @OnClick(R.id.Outdortrav)
     public void klik(){
-
-        Intent i=new Intent(getContext(),Artactivity.class);
-        startActivity(i);
+        loadFragment(new TravelFragment());
     }
 
     @OnClick(R.id.Enterteiment)
     public void klik2(){
+        loadFragment(new EnterteimentActivity());
 
-        Intent i=new Intent(getContext(),enterActivity.class);
-        startActivity(i);
+    }
+
+    @OnClick(R.id.artbudaya)
+    public void klik3(){
+        loadFragment(new BudayaFragment());
+//        Intent i=new Intent(getContext(),MainActivity.class);
+//        i.putExtra("fragment","budaya");
+//        startActivity(i);
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.framelayout, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 
 

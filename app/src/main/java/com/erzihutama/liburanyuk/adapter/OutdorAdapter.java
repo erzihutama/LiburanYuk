@@ -11,18 +11,15 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.erzihutama.liburanyuk.R;
-import com.erzihutama.liburanyuk.model.OutdorModel;
-import com.erzihutama.liburanyuk.model.OutdorResponse;
+import com.erzihutama.liburanyuk.model.OutdorItem;
 
 import java.util.List;
 
-import retrofit2.Callback;
-
 public class OutdorAdapter extends RecyclerView.Adapter<OutdorAdapter.MyHolder> {
-    List<OutdorModel> mList ;
+    List<OutdorItem> mList ;
     Context ctx;
 
-    public OutdorAdapter(Context ctx, List<OutdorModel> mList) {
+    public OutdorAdapter(Context ctx, List<OutdorItem> mList) {
         this.mList = mList;
         this.ctx = (Context) ctx;
     }
@@ -39,11 +36,11 @@ public class OutdorAdapter extends RecyclerView.Adapter<OutdorAdapter.MyHolder> 
 
     @Override
     public void onBindViewHolder(OutdorAdapter.MyHolder holder, final int position) {
-        OutdorModel OutdorModel = mList.get(position);
-        holder.namatempat.setText(OutdorModel.getNama_tempat());
-        holder.daerah.setText(OutdorModel.getDaerah());
+        OutdorItem OutdorItem = mList.get(position);
+        holder.namatempat.setText(OutdorItem.getNama_tempat());
+        holder.daerah.setText(OutdorItem.getDaerah());
         Glide.with(ctx)
-                .load(OutdorModel.getPhoto())
+                .load(OutdorItem.getPhoto())
                 .override(350,550)
                 .into(holder.gambar);
 
@@ -59,7 +56,7 @@ public class OutdorAdapter extends RecyclerView.Adapter<OutdorAdapter.MyHolder> 
         TextView namatempat, daerah;
         ImageView gambar;
         CardView cardView;
-        OutdorModel OutdorModel;
+        OutdorItem OutdorItem;
         public MyHolder(View v)
         {
             super(v);
